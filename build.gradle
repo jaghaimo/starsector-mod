@@ -11,7 +11,7 @@ repositories {
 eclipse {
     classpath {
         file {
-            whenMerged { 
+            whenMerged {
                 def lib = entries.find { it.path.contains 'starfarer.api.jar' }
                 lib.javadocPath = fileReference(file('libs/starfarer.api.zip'))
                 lib.sourcePath = fileReference(file('libs/starfarer.api.zip'))
@@ -51,13 +51,13 @@ dependencies {
 
 // create a release zip
 task release(type: Zip) {
-    def jsonFile = file('src/main/resources/mod_info.json')
+    def jsonFile = file('assets/mod_info.json')
     def slurper = new groovy.json.JsonSlurper()
     def parsedJson = slurper.parse(jsonFile)
     dependsOn build
     archiveFileName = "${project.name}-${parsedJson.version}.zip"
     destinationDirectory = file(rootDir)
-    from sourceSets.main.resources
+    from 'assets'
     from jar
     into project.name
 }
