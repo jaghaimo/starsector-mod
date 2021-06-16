@@ -13,6 +13,7 @@ Under the hood it uses a Gradle automation tool to fetch dependencies and compil
 ## Adding scripts
 
 To start creating your mod:
+
 1. Create a folder in `src/main/java` with the mod identifier name (e.g. `src/main/java/mymod`).
 1. (Optional) Add your mod plugin, recommended would be `src/main/java/mymod/MymodPlugin.java` - this file "lives" in `package mymod;` and initializes your mod.
 1. Write remaining code.
@@ -24,13 +25,25 @@ Already covered in usage, just run `./gradlew build` or `gradlew.bat build`.
 
 ## Packaging
 
-1. Create `src/main/resources/mod_info.json` with correct structure.
-1. (optional) Create additional content in `src/main/resources`:
+1. Create `assets/mod_info.json` with correct structure.
+1. (optional) Create additional content in `assets/`:
    1. `data` and `graphics` folders (if any) with their content,
    1. any other files you want to bundle.
-1. Run `./gradle release` (`mod_info.json`'s version will be used)
+1. Run `./gradlew release` (`mod_info.json`'s version will be used)
 
-## Releasing
+
+## Releasing (Automatic)
+
+Tag a commit and push it - tag name will become a release name, and commit message will become a release message.
+
+```sh
+git commit -m "My first release" # you can just `git commit` and type a body of release as well
+git push origin master           # Send the commit to your repo (no release yet)
+git tag 1.0.0                    # No release yet, it's only local now
+git push --tags origin master    # Release is happening now
+```
+
+## Releasing (Manual)
 
 1. Click "Create a release" (either from main page of your repository or from "Releases" tab).
 1. Name a tag, add title, and add description (optional, usually a list of changes made in this version).
